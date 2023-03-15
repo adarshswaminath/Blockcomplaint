@@ -3,6 +3,7 @@ import {React,useState} from "react";
 import Register from "./Register";
 import Search from "./Search";
 import Update from "./Update";
+import Admin from "./Admin";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { BrowserRouter as Router,
         Routes,
@@ -82,6 +83,7 @@ function Navbar() {
         <Route exact path='/register' element={<Register/>}/>
         <Route exact path='/search' element={<Search/>}/>
         <Route exact path='/update' element={<Update/>}/>
+        <Route exact path='/admin' element={<Admin/>}/>
       </Routes>
     </div>
    </Router>
