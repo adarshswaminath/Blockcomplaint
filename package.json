@@ -11,12 +11,17 @@
   "dependencies": {
     "@thirdweb-dev/react": "^3.9.0",
     "@thirdweb-dev/sdk": "^3.9.0",
+    "daisyui": "^2.51.3",
     "ethers": "^5.7.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^2",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
     "vite": "^3"
   }
 }
