@@ -3,14 +3,14 @@ import { Web3Button,useContract,useContractRead } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 
 function Dashboard() {
-  const { contract } = useContract("0x90dF5D02fe5e879f0ffbA22Be0D80506869C5f7F");
+  const { contract } = useContract("0xe84223ddA56997b7A665c86972E5D0501Ed1A62B");
 
   const [response, setResponse] = useState();
   const [address, setAddress] = useState();
 
   const handleResponse = (e) => setResponse(e.target.value);
   const handleAddress = (e) => setAddress(e.target.value);
-  const { data, isLoading } = useContractRead(contract, 'Read', address);
+  const { data, isLoading } = useContractRead(contract, 'Check', address);
   const handleSubmit = async () => {
     if (data) {
       const { name, email, mob, time, description, status ,response} = {
@@ -26,7 +26,7 @@ function Dashboard() {
   };
 
   return (
-    <main className="container mx-auto py-8 lg:px-32">
+    <main className="container mx-auto py-8 lg:px-32 text-white">
       {data && (
         <section className="bg-primary rounded-lg shadow-md p-8 mb-8 text-center">
             <p className="mb-2">
