@@ -1,64 +1,78 @@
 import React, { useState } from "react";
-import { Web3Button,useContract,useContractRead } from "@thirdweb-dev/react";
+import { ConnectWallet,useAddress,useContract,useContractRead,Web3Button,} from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 
 function Dashboard() {
-  const { contract } = useContract("0xe84223ddA56997b7A665c86972E5D0501Ed1A62B");
 
+
+  const { contract } = useContract("0xe84223ddA56997b7A665c86972E5D0501Ed1A62B");
   const [response, setResponse] = useState();
   const [address, setAddress] = useState();
 
+  const {data} = useContractRead(contract,"Check",address)
+  const {complaintAddress,isLoading } = useContractRead(contract,"ComplaintAddress")
+  console.log(complaintAddress)
+
+
   const handleResponse = (e) => setResponse(e.target.value);
   const handleAddress = (e) => setAddress(e.target.value);
-  const { data, isLoading } = useContractRead(contract, 'Check', address);
-  const handleSubmit = async () => {
-    if (data) {
-      const { name, email, mob, time, description, status ,response} = {
-        name: data[0],
-        email: data[1],
-        mobile: data[2],
-        time: data[3],
-        description: data[4],
-        status: data[5],
-        response: data[6] || "No Response"
-      };
-    }
-  };
 
   return (
     <main className="container mx-auto py-8 lg:px-32 text-white">
-      {data && (
         <section className="bg-primary rounded-lg shadow-md p-8 mb-8 text-center">
+        {data && (
+          <div className="border border-gray-300 rounded-md p-4">
             <p className="mb-2">
-              Name: <span className="font-medium">{data[0]}</span>
+              Address: <span className="font-medium">{data[0]}</span>
             </p>
             <p className="mb-2">
-              Email: <span className="font-medium">{data[1]}</span>
+              Name: <span className="font-medium">{data[1]}</span>
             </p>
             <p className="mb-2">
-              Mobile: <span className="font-medium">{ethers.BigNumber.from(data[2]._hex).toString()}</span>
-            </p><p className="mb-2">
-              Time: <span className="font-medium">{ethers.BigNumber.from(data[3]._hex).toString()}</span>
+              Email: <span className="font-medium">{data[2]}</span>
             </p>
             <p className="mb-2">
-              Complaint: <span className="font-medium">{data[4]}</span>
+              Complaint: <span className="font-medium">{data[3]}</span>
             </p>
             <p className="mb-2">
-              Status:   <span
-                className={`font-medium ${
-                  data[5] ? "text-green-500" : "text-red-500"
-                }`}
-              >
-                {data[5] ? "Resolved" : "Pending"}
+              Mobile: <span className="font-medium">{ethers.BigNumber.from(data[4]._hex).toString()}</span>
+            </p>
+            <p className="mb-2">
+              Time Stamp:{" "}
+              <span className="font-medium">
+              {new Date(parseInt(data[5]._hex) * 1000).toLocaleString()}
               </span>
             </p>
             <p className="mb-2">
-              Response: <span className="font-medium">{data[6]}</span>
+              Response:
+              <span className={`font-medium ${data[6] ? "": "text-red-500"}`}>
+                {data[6] ? data[6] : "No Response"}
+              </span>
             </p>
+            <p className="mb-2">
+              Response Time:{" "}
+              <span className="font-medium">
+              {data[7]._hex !== "1/1/1970, 5:30:00 am"
+            ? new Date(parseInt(data[7]._hex) * 1000).toLocaleString()
+            : "No Response"}
+              </span>
+            </p>
+            <p>
+              Status:{" "}
+              <span
+                className={`font-medium ${
+                  data[8] ? "text-green-500" : "text-red-500"
+                }`}
+              >
+                {data[8] ? "Resolved" : "Pending"}
+              </span>
+            </p>
+          </div>
+        )}
         </section>
-      )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-3">
         <div className="bg-gray-800 p-8 rounded-lg shadow-md text-white text-xl font-bold">
           <label htmlFor="address" className="block mb-4">
             Address:
@@ -86,9 +100,14 @@ function Dashboard() {
         </div>
       </div>
 
-      <Web3Button className="bg-primary rounded-lg shadow-md p-6 mt-8">
-        Submit
-      </Web3Button>
+      <Web3Button
+      contractAddress="0xe84223ddA56997b7A665c86972E5D0501Ed1A62B"
+      action={(contract) => {
+        contract.call("Respond", address, response)
+      }}
+    >
+      Respond
+    </Web3Button>
     </main>
   );
 }

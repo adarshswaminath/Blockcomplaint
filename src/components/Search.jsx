@@ -48,7 +48,9 @@ function Search() {
             <p className="mb-2">
               Response Time:{" "}
               <span className="font-medium">
-              {new Date(parseInt(data[7]._hex) * 1000).toLocaleString()}
+              {data[7]._hex !== "1/1/1970, 5:30:00 am"
+            ? new Date(parseInt(data[7]._hex) * 1000).toLocaleString()
+            : "No Response"}
               </span>
             </p>
             <p>
