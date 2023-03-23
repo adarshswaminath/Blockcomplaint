@@ -4,12 +4,12 @@ import { useContract, useContractRead } from "@thirdweb-dev/react";
 
 function Search() {
   const { contract } = useContract(
-    "0xe84223ddA56997b7A665c86972E5D0501Ed1A62B"
+    "0xf9144213df6ab9FE7eF79c70033001662AFc997F"
   );
   const [address, setAddress] = useState("");
   const handleAddress = (e) => setAddress(e.target.value); // user address
   // getting data from the contract
-  const { data, isLoading } = useContractRead(contract, "Check", address);
+  const { data, isLoading } = useContractRead(contract, "Search", address);
 
 
   return (
@@ -28,41 +28,40 @@ function Search() {
         {data && (
           <div className="border border-gray-300 rounded-md p-4">
             <p className="mb-2">
-              Name: <span className="font-medium">{data[1]}</span>
+              Id : {ethers.BigNumber.from(data[0]._hex).toString()}
             </p>
             <p className="mb-2">
-              Complaint: <span className="font-medium">{data[3]}</span>
+              Complaint: {data[6]}
             </p>
             <p className="mb-2">
               Time Stamp:{" "}
               <span className="font-medium">
-              {new Date(parseInt(data[5]._hex) * 1000).toLocaleString()}
+              {new Date(parseInt(data[7]._hex) * 1000).toLocaleString()}
               </span>
             </p>
             <p className="mb-2">
               Response:
-              <span className={`font-medium ${data[6] ? "": "text-red-500"}`}>
-                {data[6] ? data[6] : "No Response"}
+              <span className={`font-medium ${data[8] ? "": "text-red-500"}`}>
+                {data[8] ? data[8] : "No Response"}
               </span>
             </p>
             <p className="mb-2">
               Response Time:{" "}
               <span className="font-medium">
-              {data[7]._hex !== "1/1/1970, 5:30:00 am"
-            ? new Date(parseInt(data[7]._hex) * 1000).toLocaleString()
-            : "No Response"}
+              { new Date(parseInt(data[9]._hex) * 1000).toLocaleString() }
               </span>
             </p>
             <p>
               Status:{" "}
               <span
                 className={`font-medium ${
-                  data[8] ? "text-green-500" : "text-red-500"
+                  data[10] ? "text-green-500" : "text-red-500"
                 }`}
               >
-                {data[8] ? "Resolved" : "Pending"}
+                {data[10] ? "Resolved" : "Pending"}
               </span>
             </p>
+            
           </div>
         )}
       </div>

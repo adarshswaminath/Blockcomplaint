@@ -4,7 +4,8 @@ import React, { useState } from "react";
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [mob, setMob] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [address,setAddress] = useState("")
   const [complaint, setComplaint] = useState("");
 
   const handleSubmit = (e) => {
@@ -37,11 +38,19 @@ function Register() {
           </div>
           <input
             type="text"
+            name="address"
+            className="h-12 text-center"
+            value={address}
+            placeholder="Address"
+            onChange={(e) => setAddress(e.target.value)}
+          />
+          <input
+            type="text"
             name="mob"
             className="h-12 text-center"
-            value={mob}
+            value={mobile}
             placeholder="Mobile No"
-            onChange={(e) => setMob(e.target.value)}
+            onChange={(e) => setMobile(e.target.value)}
           />
           <textarea
             name=""
@@ -55,9 +64,9 @@ function Register() {
           ></textarea>
           <Web3Button
             className="bg-white text-black w-20 m-auto px-4 py-2 rounded"
-            contractAddress="0xe84223ddA56997b7A665c86972E5D0501Ed1A62B"
+            contractAddress="0xf9144213df6ab9FE7eF79c70033001662AFc997F"
             action={(contract) => {
-              contract.call("Register", name,email,complaint,mob);
+              contract.call("Register", name,email,address,mobile,complaint);
             }}
           >
             Submit

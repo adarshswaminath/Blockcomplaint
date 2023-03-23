@@ -1,115 +1,51 @@
-import React, { useState } from "react";
-import { ConnectWallet,useAddress,useContract,useContractRead,Web3Button,} from "@thirdweb-dev/react";
-import { ethers } from "ethers";
+import React, { useState } from 'react'
+import { useContract, useContractRead, Web3Button } from "@thirdweb-dev/react"
+import { ethers } from 'ethers'
 
 function Dashboard() {
+  const { contract } = useContract("0xf9144213df6ab9FE7eF79c70033001662AFc997F")
+  const [id, setID] = useState()
+  const [response, setResponse] = useState('')
+  const [count, setCount] = useState(0)
 
 
-  const { contract } = useContract("0xe84223ddA56997b7A665c86972E5D0501Ed1A62B");
-  const [response, setResponse] = useState();
-  const [address, setAddress] = useState();
-
-  const {data} = useContractRead(contract,"Check",address)
-  const {complaintAddress,isLoading } = useContractRead(contract,"ComplaintAddress")
-  console.log(complaintAddress)
-
-
-  const handleResponse = (e) => setResponse(e.target.value);
-  const handleAddress = (e) => setAddress(e.target.value);
 
   return (
-    <main className="container mx-auto py-8 lg:px-32 text-white">
-        <section className="bg-primary rounded-lg shadow-md p-8 mb-8 text-center">
-        {data && (
-          <div className="border border-gray-300 rounded-md p-4">
-            <p className="mb-2">
-              Address: <span className="font-medium">{data[0]}</span>
-            </p>
-            <p className="mb-2">
-              Name: <span className="font-medium">{data[1]}</span>
-            </p>
-            <p className="mb-2">
-              Email: <span className="font-medium">{data[2]}</span>
-            </p>
-            <p className="mb-2">
-              Complaint: <span className="font-medium">{data[3]}</span>
-            </p>
-            <p className="mb-2">
-              Mobile: <span className="font-medium">{ethers.BigNumber.from(data[4]._hex).toString()}</span>
-            </p>
-            <p className="mb-2">
-              Time Stamp:{" "}
-              <span className="font-medium">
-              {new Date(parseInt(data[5]._hex) * 1000).toLocaleString()}
-              </span>
-            </p>
-            <p className="mb-2">
-              Response:
-              <span className={`font-medium ${data[6] ? "": "text-red-500"}`}>
-                {data[6] ? data[6] : "No Response"}
-              </span>
-            </p>
-            <p className="mb-2">
-              Response Time:{" "}
-              <span className="font-medium">
-              {data[7]._hex !== "1/1/1970, 5:30:00 am"
-            ? new Date(parseInt(data[7]._hex) * 1000).toLocaleString()
-            : "No Response"}
-              </span>
-            </p>
-            <p>
-              Status:{" "}
-              <span
-                className={`font-medium ${
-                  data[8] ? "text-green-500" : "text-red-500"
-                }`}
-              >
-                {data[8] ? "Resolved" : "Pending"}
-              </span>
-            </p>
+    <div className='p-3 text-center'>
+      <div className="flex :grid sm:grid-cols-3 gap3 ">
+      <div className="card w-80 bg-blue-600 text-primary-content">
+        <div className="card-body">
+          <h2 className="card-title">Total Complaints</h2>
+          <p>{ethers.BigNumber.from(count).toString()}</p>
+          <div className="card-actions justify-end">
+            <Web3Button
+              contractAddress='0xf9144213df6ab9FE7eF79c70033001662AFc997F'
+              action={async (contract) => setCount(await contract.call('TotalCompalints'))}
+              useContract={useContract} className='btn'
+            >Total</Web3Button>
           </div>
-        )}
-        </section>
-
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-3">
-        <div className="bg-gray-800 p-8 rounded-lg shadow-md text-white text-xl font-bold">
-          <label htmlFor="address" className="block mb-4">
-            Address:
-          </label>
-          <input
-            type="text"
-            id="address"
-            className="w-full h-12 bg-white text-black text-center"
-            placeholder="Enter address"
-            onChange={handleAddress}
-          />
-        </div>
-
-        <div className="bg-gray-800 p-8 rounded-lg shadow-md text-white text-xl font-bold">
-          <label htmlFor="message" className="block mb-4">
-            Message:
-          </label>
-          <input
-            type="text"
-            id="message"
-            className="w-full h-12 bg-white text-black text-center"
-            placeholder="Enter message"
-            onChange={handleResponse}
-          />
         </div>
       </div>
+   
+      </div>
+      <div className="form p-6 bg-green-400 m-2 grid items-center ">
+        <h2 className="text-white">Response</h2>
+        <input type="text" className='p-2 mb-2 text-center' placeholder='Complaint ID'
+          onChange={(e) => setID(e.target.value)}
+        />
+        <textarea id="" cols="30" rows="10" placeholder='Response' className='mb-2 text-center'
+          onChange={(e) => setResponse(e.target.value)}
+        ></textarea>
+        <Web3Button
+          contractAddress='0xf9144213df6ab9FE7eF79c70033001662AFc997F'
+          action={(contract) => {
+            contract.call("Respond", id, response)
+          }}
+        >Submit</Web3Button>
+      </div>
 
-      <Web3Button
-      contractAddress="0xe84223ddA56997b7A665c86972E5D0501Ed1A62B"
-      action={(contract) => {
-        contract.call("Respond", address, response)
-      }}
-    >
-      Respond
-    </Web3Button>
-    </main>
-  );
+    </div>
+  )
 }
 
-export default Dashboard;
+export default Dashboard
