@@ -49,6 +49,7 @@ function Navbar() {
               <li>
                 <Link to="/update">Update</Link>
               </li>
+              <li><Link to='/admin'>Admin</Link></li>
             </ul>
           </div>
         </div>
