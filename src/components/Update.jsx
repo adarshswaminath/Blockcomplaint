@@ -4,7 +4,7 @@ import { ethers } from "ethers"
 
 function Update() {
   const address = useAddress()
-  const { contract } = useContract("0xf9144213df6ab9FE7eF79c70033001662AFc997F")
+  const { contract } = useContract("0x5A3016e7cb647ba86A8DE8Dd7E66934e757ba927")
   const { data, isLoading } = useContractRead(contract, 'Search', address)
   let id, complainter, name, email, addr, mobile, wallet, complaint, time, resposnse, response_time, status
   if (data) {
@@ -94,7 +94,7 @@ function Update() {
             )}
           </div>
           <Web3Button
-            contractAddress="0xf9144213df6ab9FE7eF79c70033001662AFc997F"
+            contractAddress="0x5A3016e7cb647ba86A8DE8Dd7E66934e757ba927"
             action={(contract) => {
               contract.call('UpdateStatus')
             }}

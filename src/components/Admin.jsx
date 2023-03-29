@@ -19,7 +19,7 @@ const Admin = () => {
 
     return (
         address === '0x154980C4Cb162E231d28fBb45157B634b7eb670F' ? 
-            <Dashboard /> : 
+            <Dashboard/> : 
             <div>
                 <Form/>
             </div>

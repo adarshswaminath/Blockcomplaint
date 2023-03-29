@@ -10,7 +10,7 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name, email, mob, complaint);
+    console.log(name, email, mobile, complaint);
   };
   return (
     <div>
@@ -64,7 +64,7 @@ function Register() {
           ></textarea>
           <Web3Button
             className="bg-white text-black w-20 m-auto px-4 py-2 rounded"
-            contractAddress="0xf9144213df6ab9FE7eF79c70033001662AFc997F"
+            contractAddress="0x5A3016e7cb647ba86A8DE8Dd7E66934e757ba927"
             action={(contract) => {
               contract.call("Register", name,email,address,mobile,complaint);
             }}
