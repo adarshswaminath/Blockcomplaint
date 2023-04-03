@@ -64,7 +64,7 @@ function Register() {
           ></textarea>
           <Web3Button
             className="bg-white text-black w-20 m-auto px-4 py-2 rounded"
-            contractAddress="0x5A3016e7cb647ba86A8DE8Dd7E66934e757ba927"
+            contractAddress="0x0FCb59B2F85b26a234abaA4E6e0C7F3cBC062B4e"
             action={(contract) => {
               contract.call("Register", name,email,address,mobile,complaint);
             }}

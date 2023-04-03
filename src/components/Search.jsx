@@ -4,7 +4,7 @@ import { useContract, useContractRead } from "@thirdweb-dev/react";
 
 function Search() {
   const { contract } = useContract(
-    "0x5A3016e7cb647ba86A8DE8Dd7E66934e757ba927"
+    "0x0FCb59B2F85b26a234abaA4E6e0C7F3cBC062B4e"
   );
   const [address, setAddress] = useState("");
   const handleAddress = (e) => setAddress(e.target.value); // user address

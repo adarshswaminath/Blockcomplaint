@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 import { MdClose } from "react-icons/md"
 
 function Dashboard() {
-  const { contract } = useContract("0x5A3016e7cb647ba86A8DE8Dd7E66934e757ba927") // Contract address 
+  const { contract } = useContract("0x0FCb59B2F85b26a234abaA4E6e0C7F3cBC062B4e") // Contract address 
   const [complaintId, setComplaintId] = useState() // Get complaint id from admin
   const [showResponse, setShowResponse] = useState(false) // Toggle responding window
   const [totalStatusUpdate,setStatusUpdate] = useState(0) // Total no.of complaint status updated
@@ -53,7 +53,7 @@ function Dashboard() {
             <div className='w-1/3 m-auto'>
               <Web3Button
                 className="bg-white font-bold hover:shadow-lg hover:text-white p-3 rounded-lg shadow-md text-blue-400 transition duration-300"
-                contractAddress="0x5A3016e7cb647ba86A8DE8Dd7E66934e757ba927"
+                contractAddress="0x0FCb59B2F85b26a234abaA4E6e0C7F3cBC062B4e"
                 action={(contract) => {
                   contract.call("Respond", complaintId, response);
                 }}>
