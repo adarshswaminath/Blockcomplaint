@@ -9,6 +9,7 @@ import { BrowserRouter as Router,
         Routes,
         Route,
         Link } from "react-router-dom";
+import image from "./hero.png"
 
 
 function Navbar() {
@@ -17,68 +18,21 @@ function Navbar() {
   return (
    <Router>
      <div>
-      <div className="navbar bg-base-100">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost btn-circle text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h7"
-                />
-              </svg>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <Link to="/register">Register Complaint</Link>
-              </li>
-              <li>
-                <Link to="/search">Search</Link>
-              </li>
-              <li>
-                <Link to="/update">Update</Link>
-              </li>
-              <li><Link to='/admin'>Admin</Link></li>
-            </ul>
-          </div>
+      {/* navbar opens  */}
+      <div className="navbar flex justify-between p-2 border border-gray-200">
+        <div className="logo">
+          <h1 className="text-2xl">
+            <Link to="/">BCRS</Link>
+          </h1>
         </div>
-        <div className="navbar-center">
-          <span className="btn btn-ghost normal-case text-xl text-white">
-            <Link to='/'>BlockComplaints</Link>
-          </span>
-        </div>
-        <div className="navbar-end">
-          <Link to='/search'>
-          <button className="btn btn-ghost btn-circle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </button>
-          </Link>
+        <div className="flex gap-3">
+          <Link to="/register">Register</Link>
+          <Link to="/search">Search</Link>
+          <Link to="/update">Update</Link>
+          <Link to='/admin'>Admin</Link>
         </div>
       </div>
+      {/* navbar closes */}
       <Routes>
         <Route exact path='/' element={<Home/>}/>
         <Route exact path='/register' element={<Register/>}/>
@@ -93,11 +47,20 @@ function Navbar() {
 
 function Home() {
     return(
-        <div className="p-6 flex justify-center items-center h-screen">
-            <div className="p-6 bg-primary rounded-lg">
-              <h1 className="text-white text-2xl">Welcome to the BlockComplaints</h1>
-            </div>
-        </div>
+      <section class="bg-white">
+      <div class="grid h-screen px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+          <div class="mr-auto place-self-center lg:col-span-7">
+              <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">Blockchain Complaint Management System</h1>
+              <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">From checkout to global sales tax compliance, companies around the world use Flowbite to simplify their payment stack.</p>
+              <Link to="/register" class="inline-flex w-80 items-center justify-center py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg bg-gray-100 focus:ring-4 focus:ring-gray-100 ">
+                  Register
+              </Link> 
+          </div>
+          <div class="lg:mt-0 lg:col-span-5 lg:flex">
+              <img src={image} alt="mockup"/>
+          </div>                
+      </div>
+  </section>
     )
 }
 

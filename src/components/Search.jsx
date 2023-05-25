@@ -4,7 +4,7 @@ import { useContract, useContractRead } from "@thirdweb-dev/react";
 
 function Search() {
   const { contract } = useContract(
-    "0x0FCb59B2F85b26a234abaA4E6e0C7F3cBC062B4e"
+    "0xB5CEa5e135651a152729e706a3D1274C1518e8bf"
   );
   const [address, setAddress] = useState("");
   const handleAddress = (e) => setAddress(e.target.value); // user address
@@ -14,19 +14,19 @@ function Search() {
 
   return (
     <div className="flex flex-col items-center justify-center p-8 m-8">
-      <h1 className="text-white text-2xl mb-2">Search</h1>
+      <h1 className="text-3xl">Search</h1>
       <div className="grid grid-cols-1 gap-3 p-8 rounded-lg w-96">
         <input
           type="text"
-          className="h-12 p-3"
+          className="h-12 p-4 border border-black rounded-lg"
           placeholder="Address to Search"
           onChange={handleAddress}
         />
       </div>
 
-      <div className="flex-grow py-8 max-w-md">
+      <div className="flex-grow  max-w-md">
         {data && (
-          <div className="border border-gray-300 rounded-md p-4">
+          <div className="border border-gray-600 rounded-md p-4">
             <p className="mb-2">
               Id : {ethers.BigNumber.from(data[0]._hex).toString()}
             </p>

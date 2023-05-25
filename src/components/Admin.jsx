@@ -1,5 +1,5 @@
 import React from 'react'
-import { ConnectWallet, useAddress } from '@thirdweb-dev/react'
+import { ConnectWallet, useAddress ,useContract, useContractRead} from '@thirdweb-dev/react'
 import Dashboard from './Admin/Dashboard'
 
 const Form = () => {
@@ -15,10 +15,14 @@ const Form = () => {
 }
 
 const Admin = () => {
+    // get contract owner
+    const { contract } = useContract("0xB5CEa5e135651a152729e706a3D1274C1518e8bf");
+    const { data, isLoading } = useContractRead(contract, "owner")
+    // get wallet address
     const address = useAddress()
 
     return (
-        address === '0x154980C4Cb162E231d28fBb45157B634b7eb670F' ? 
+        address === data ? 
             <Dashboard/> : 
             <div>
                 <Form/>

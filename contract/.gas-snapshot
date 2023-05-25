@@ -1,4 +1,0 @@
-ContractTest:testRegister() (gas: 7734)
-ContractTest:testRespond() (gas: 364245)
-ContractTest:testTotalRespondedComplaints() (gas: 7523)
-ContractTest:testUpdate() (gas: 261495)
