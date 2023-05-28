@@ -15,7 +15,7 @@ function Register() {
   return (
     <div>
       <div>
-        <form onSubmit={handleSubmit} className="p-8 bg-gray-300 grid justify-center items-center gap-3">
+        <form onSubmit={handleSubmit} className="p-8 grid justify-center items-center gap-3">
           <div>
             <h1 className="text-2xl mb-2 text-center">Register Complaint</h1>
           </div>
@@ -23,14 +23,14 @@ function Register() {
             <input
               type="text"
               name="name"
-              className="p-3 text-center rounded-lg"
+              className="p-3 text-center rounded-lg border border-gray-600 border-b-4 border-r-4"
               value={name}
               placeholder="Name"
               onChange={(e) => setName(e.target.value)}
             />
             <input
               type="email"
-              className="p-3 text-center rounded-lg"
+              className="p-3 text-center rounded-lg border border-gray-600 border-b-4 border-r-4"
               value={email}
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
@@ -39,7 +39,7 @@ function Register() {
           <input
             type="text"
             name="address"
-            className="p-6 text-center rounded-lg"
+            className="p-6 text-center rounded-lg border border-gray-600 border-b-4 border-r-4"
             value={address}
             placeholder="Address"
             onChange={(e) => setAddress(e.target.value)}
@@ -47,7 +47,7 @@ function Register() {
           <input
             type="text"
             name="mob"
-            className="p-3 text-center rounded-lg"
+            className="p-3 text-center rounded-lg border border-gray-600 border-b-4 border-r-4"
             value={mobile}
             placeholder="Mobile No"
             onChange={(e) => setMobile(e.target.value)}
@@ -57,7 +57,7 @@ function Register() {
             id=""
             cols="30"
             rows="10"
-            className="text-center"
+            className="text-center border rounded-lg border-gray-600 border-b-4 border-r-4"
             value={complaint}
             placeholder="Complaint"
             onChange={(e) => setComplaint(e.target.value)}

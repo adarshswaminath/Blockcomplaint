@@ -41,7 +41,7 @@ function Update() {
           <h1 className="text-3xl text-gray-800 font-bold">Update Status</h1>
           <ConnectWallet />
         </div>
-        <div className="rounded-lg shadow-lg p-6 mb-8 border border-gray-500">
+        <div className="rounded-lg shadow-lg p-6 mb-8 border border-gray-600 border-b-4 border-r-4">
           <div className="mb-4">
             {isLoading ? (
               <p>Loading...</p>

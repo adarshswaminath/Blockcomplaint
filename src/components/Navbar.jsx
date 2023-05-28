@@ -9,7 +9,7 @@ import { BrowserRouter as Router,
         Routes,
         Route,
         Link } from "react-router-dom";
-import image from "./hero.png"
+import image from "./hero.svg"
 
 
 function Navbar() {
@@ -52,7 +52,7 @@ function Home() {
           <div class="mr-auto place-self-center lg:col-span-7">
               <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">Blockchain Complaint Management System</h1>
               <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">From checkout to global sales tax compliance, companies around the world use blockchain to simplify their payment stack.</p>
-              <Link to="/register" class="inline-flex w-80 items-center justify-center py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg bg-gray-100 focus:ring-4 focus:ring-gray-100 ">
+              <Link to="/register" class="inline-flex w-80 items-center justify-center py-3 text-base font-medium text-center text-gray-900 border border-gray-600 border-b-4 border-r-4 rounded-lg bg-gray-100 focus:ring-4 focus:ring-gray-100 shadow-lg">
                   Register
               </Link> 
           </div>

@@ -18,7 +18,7 @@ function Search() {
       <div className="grid grid-cols-1 gap-3 p-8 rounded-lg w-96">
         <input
           type="text"
-          className="h-12 p-4 border border-black rounded-lg"
+          className="h-12 p-4 border border-gray-600 border-b-4 border-r-4 rounded-lg"
           placeholder="Address to Search"
           onChange={handleAddress}
         />
@@ -26,7 +26,7 @@ function Search() {
 
       <div className="flex-grow  max-w-md">
         {data && (
-          <div className="border border-gray-600 rounded-md p-4">
+          <div className="border border-gray-600 border-b-4 border-r-4 rounded-md p-4">
             <p className="mb-2">
               Id : {ethers.BigNumber.from(data[0]._hex).toString()}
             </p>
