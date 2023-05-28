@@ -95,8 +95,8 @@ function Dashboard() {
           <MdClose className=" text-gray-400 text-xl" />
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-200">
-          <div className="shadow-lg p-6 rounded-lg text-center justify-center items-center border border-gray-600">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
+          <div className="bg-gray-200 shadow-lg p-6 rounded-lg text-center justify-center items-center border border-gray-600">
             <div className="mb-4">
               <input
                 type="text"
@@ -130,7 +130,7 @@ function Dashboard() {
           </div>
 
           {data && (
-            <div className="p-6 rounded-lg shadow-md border-2 border-gray-600">
+            <div className="p-6 rounded-lg shadow-md border-2 bg-gray-200 border-gray-600">
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
                   <p className="mb-2 font-semibold text-sm uppercase">
